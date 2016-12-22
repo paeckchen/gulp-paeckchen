@@ -19,7 +19,7 @@ Built by (c) KnisterPeter. Released under the MIT license.
 [travis-image]: https://travis-ci.org/paeckchen/gulp-paeckchen.svg?branch=master
 [travis-url]: https://travis-ci.org/paeckchen/gulp-paeckchen
 
-[appveyor-image]: https://ci.appveyor.com/api/projects/status/r5bibqgy676fbf87/branch/master?svg=true
+[appveyor-image]: https://ci.appveyor.com/api/projects/status/30pbjbtrr83qgkr8/branch/master?svg=true
 [appveyor-url]: https://ci.appveyor.com/project/KnisterPeter/paeckchen-core/branch/master
 
 [coveralls-image]: https://coveralls.io/repos/github/paeckchen/gulp-paeckchen/badge.svg?branch=master
