@@ -3,8 +3,8 @@ import { LogLevel, Logger, Config } from 'paeckchen-core';
 
 export class GulpLogger implements Logger {
 
-  private enabledTrace: boolean = false;
-  private enabledDebug: boolean = false;
+  private enabledTrace = false;
+  private enabledDebug = false;
 
   public configure(config: Config): void {
     this.enabledTrace = config.logLevel === LogLevel.trace;
