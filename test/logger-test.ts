@@ -1,4 +1,4 @@
-import test from 'ava';
+import * as ava from 'ava';
 import * as getLogger from 'glogg';
 import { LogLevel } from 'paeckchen-core';
 
@@ -6,11 +6,16 @@ import { GulpLogger } from '../src/logger';
 
 const gulplog = getLogger('gulplog');
 
-test.beforeEach(t => {
-  gulplog.on('info', message => {
-    t.context.message = message;
+function contextualize<T>(): ava.RegisterContextual<T> {
+  ava.test.beforeEach(t => {
+    gulplog.on('info', message => {
+      t.context.message = message;
+    });
   });
-});
+  return ava.test;
+}
+
+const test = contextualize<{message: string|undefined}>();
 
 test.afterEach(() => {
   gulplog.removeAllListeners();
@@ -23,16 +28,24 @@ test('GulpLogger should contain loglevel in output line', t => {
   } as any);
 
   logger.trace('test', 'message');
-  t.regex(t.context.message, /TRACE/);
+  if (t.context.message) {
+    t.regex(t.context.message, /TRACE/);
+  }
 
   logger.debug('test', 'message');
-  t.regex(t.context.message, /DEBUG/);
+  if (t.context.message) {
+    t.regex(t.context.message, /DEBUG/);
+  }
 
   logger.info('test', 'message');
-  t.regex(t.context.message, /INFO/);
+  if (t.context.message) {
+    t.regex(t.context.message, /INFO/);
+  }
 
   logger.error('test', new Error(), 'message');
-  t.regex(t.context.message, /ERROR/);
+  if (t.context.message) {
+    t.regex(t.context.message, /ERROR/);
+  }
 });
 
 test('GulpLogger should only log trace if enabled', t => {
@@ -42,19 +55,21 @@ test('GulpLogger should only log trace if enabled', t => {
   } as any);
 
   logger.trace('test', 'message');
-  t.context.message = undefined;
+  t.is(t.context.message, undefined);
 });
 
 test('GulpLogger should only log debug if enabled', t => {
   const logger = new GulpLogger();
 
   logger.debug('test', 'message');
-  t.context.message = undefined;
+  t.is(t.context.message, undefined);
 });
 
 test('GulpLogger should log error message', t => {
   const logger = new GulpLogger();
 
   logger.error('test', new Error('error-msg'), 'message');
-  t.regex(t.context.message, /error-msg/);
+  if (t.context.message) {
+    t.regex(t.context.message, /error-msg/);
+  }
 });

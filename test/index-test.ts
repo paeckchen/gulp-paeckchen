@@ -1,4 +1,4 @@
-import test from 'ava';
+import test, {CallbackTestContext, Context} from 'ava';
 import * as gulp from 'gulp';
 import { File, PluginError } from 'gulp-util';
 import { Logger } from 'paeckchen-core';
@@ -16,7 +16,7 @@ class TestLogger implements Logger {
   public progress(): void { /* */ }
 }
 
-test.cb('paeckchen-gulp throws in error during bundling', t => {
+test.cb('paeckchen-gulp throws in error during bundling', (t: CallbackTestContext & Context<any>) => {
   gulp.src('fixtures/*.js')
     .pipe(paeckchen({entryPoint: 'not-found.js', exitOnError: false, logger: new TestLogger()})())
     .on('data', () => {
@@ -30,7 +30,7 @@ test.cb('paeckchen-gulp throws in error during bundling', t => {
     });
 });
 
-test.cb('paeckchen-gulp will stop on error by default', t => {
+test.cb('paeckchen-gulp will stop on error by default', (t: CallbackTestContext & Context<any>) => {
   const origProcessExit = process.exit;
   function resetProcess(): void {
     process.exit = origProcessExit;
@@ -55,7 +55,7 @@ test.cb('paeckchen-gulp will stop on error by default', t => {
     ));
 });
 
-test.cb('paeckchen-gulp will emit host updates in watch mode', t => {
+test.cb('paeckchen-gulp will emit host updates in watch mode', (t: CallbackTestContext & Context<any>) => {
   function touchFile(this: Transform, file: File, _: any, callback: () => void): void {
     file.stat!.mtime.setTime(file.stat!.mtime.getTime() + 1);
     this.push(file);

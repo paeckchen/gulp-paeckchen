@@ -1,4 +1,4 @@
-import test from 'ava';
+import test, {CallbackTestContext, Context} from 'ava';
 import { File } from 'gulp-util';
 import { bundle } from 'paeckchen-core';
 
@@ -6,7 +6,7 @@ import { ExtendedFile } from '../src/context';
 
 import { flushFactory } from '../src/flush-factory';
 
-test.cb('flushFactory bundles on call', t => {
+test.cb('flushFactory bundles on call', (t: CallbackTestContext & Context<any>) => {
   let bundleFile: File;
 
   const opts = {};
@@ -39,7 +39,7 @@ test.cb('flushFactory bundles on call', t => {
   });
 });
 
-test.cb('flushFactory rebundles on second call', t => {
+test.cb('flushFactory rebundles on second call', (t: CallbackTestContext & Context<any>) => {
   const opts = {};
   const gulpContext = {
     host: {
@@ -53,7 +53,7 @@ test.cb('flushFactory rebundles on second call', t => {
   flush(() => undefined);
 });
 
-test.cb('flushFactory directly continues of no files are present', t => {
+test.cb('flushFactory directly continues of no files are present', (t: CallbackTestContext & Context<any>) => {
   const opts = {};
   const gulpContext = {} as any;
   const flush = flushFactory(opts, gulpContext);
@@ -62,7 +62,7 @@ test.cb('flushFactory directly continues of no files are present', t => {
   });
 });
 
-test.cb('flushFactory handles sourceMaps if given in files', t => {
+test.cb('flushFactory handles sourceMaps if given in files', (t: CallbackTestContext & Context<any>) => {
   let bundleFile: ExtendedFile;
 
   const opts = {};
