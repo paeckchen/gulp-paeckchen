@@ -1,11 +1,11 @@
-import test from 'ava';
+import test, {CallbackTestContext, Context} from 'ava';
 import { File, PluginError } from 'gulp-util';
 import { Duplex } from 'stream';
 import { ExtendedFile } from '../src/context';
 
 import { transformFactory } from '../src/transform-factory';
 
-test.cb('transformFactory should let through null files', t => {
+test.cb('transformFactory should let through null files', (t: CallbackTestContext & Context<any>) => {
   const context = {} as any;
   const inputFile = new File({
     path: '/test',
@@ -20,7 +20,7 @@ test.cb('transformFactory should let through null files', t => {
   transform(inputFile, 'utf-8', callback);
 });
 
-test.cb('transformFactory should throw error on stream input', t => {
+test.cb('transformFactory should throw error on stream input', (t: CallbackTestContext & Context<any>) => {
   let error: PluginError;
 
   const context = {} as any;
@@ -42,7 +42,7 @@ test.cb('transformFactory should throw error on stream input', t => {
   transform.call(fakeEmitter, inputFile, 'utf-8', callback);
 });
 
-test.cb('transformFactory remembers the first input file', t => {
+test.cb('transformFactory remembers the first input file', (t: CallbackTestContext & Context<any>) => {
   const context = {} as any;
   const inputFile1 = new File({
     path: '/test',
@@ -63,7 +63,7 @@ test.cb('transformFactory remembers the first input file', t => {
   transform(inputFile2, 'utf-8', callback);
 });
 
-test.cb('transformFactory add input files to the host', t => {
+test.cb('transformFactory add input files to the host', (t: CallbackTestContext & Context<any>) => {
   const context = {} as any;
   const inputFile1 = new File({
     path: '/test',
@@ -79,7 +79,8 @@ test.cb('transformFactory add input files to the host', t => {
   transform(inputFile1, 'utf-8', callback);
 });
 
-test.cb('transformFactory should enable sourceMap and add a sourceMapFile to the host', t => {
+test.cb('transformFactory should enable sourceMap and add a sourceMapFile to the host',
+    (t: CallbackTestContext & Context<any>) => {
   const context = {} as any;
   const inputFile1: ExtendedFile = new File({
     path: '/test',

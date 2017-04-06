@@ -20,6 +20,6 @@ export interface GulpContext {
   withSourceMap: boolean;
   firstFlush: boolean;
   stream: Transform;
-  flushCallback: () => void;
   logger: Logger;
+  flushCallback(): void;
 }

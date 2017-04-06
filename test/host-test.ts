@@ -1,4 +1,4 @@
-import test from 'ava';
+import test, {CallbackTestContext, Context} from 'ava';
 import { File } from 'gulp-util';
 
 import { VinylWatcher } from '../src/watcher';
@@ -23,7 +23,7 @@ test('GulpHost should store files written with it', t => {
   t.is((host.getFile('/test') as File).contents!.toString(), 'content');
 });
 
-test.cb('GulpHost should add new watched files to the watcher', t => {
+test.cb('GulpHost should add new watched files to the watcher', (t: CallbackTestContext & Context<any>) => {
   const host = new GulpHost('.');
   const watcher = host.createWatcher();
   watcher.start((event, fileName) => {
@@ -41,7 +41,7 @@ test.cb('GulpHost should add new watched files to the watcher', t => {
   (watcher as VinylWatcher).emitEvents();
 });
 
-test.cb('GulpHost should update existing watched files', t => {
+test.cb('GulpHost should update existing watched files', (t: CallbackTestContext & Context<any>) => {
   const host = new GulpHost('.');
   const watcher = host.createWatcher();
   let secondEmit = false;
@@ -65,7 +65,7 @@ test.cb('GulpHost should update existing watched files', t => {
   (watcher as VinylWatcher).emitEvents();
 });
 
-test.cb('GulpHost should update only newer files', t => {
+test.cb('GulpHost should update only newer files', (t: CallbackTestContext & Context<any>) => {
   const host = new GulpHost('.');
   const watcher = host.createWatcher();
   let oneUpdate = false;
