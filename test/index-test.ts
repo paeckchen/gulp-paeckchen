@@ -35,7 +35,7 @@ test.cb('paeckchen-gulp will stop on error by default', (t: CallbackTestContext 
   function resetProcess(): void {
     process.exit = origProcessExit;
   }
-  process.exit = function(code): void {
+  (process as any).exit = function(code: number): void {
     resetProcess();
     t.is(code, 1);
     t.end();
