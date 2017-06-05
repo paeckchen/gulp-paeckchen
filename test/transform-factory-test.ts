@@ -71,7 +71,7 @@ test.cb('transformFactory add input files to the host', (t: CallbackTestContext 
   });
 
   const callback = () => {
-    t.is((context.host as any).files['/test'], inputFile1);
+    t.is(context.host.files['/test'], inputFile1);
     t.end();
   };
 
@@ -90,7 +90,7 @@ test.cb('transformFactory should enable sourceMap and add a sourceMapFile to the
 
   const callback = () => {
     t.true(context.withSourceMap);
-    t.true('/test.map' in (context.host as any).files);
+    t.true('/test.map' in context.host.files);
     t.end();
   };
 
