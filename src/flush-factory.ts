@@ -8,7 +8,7 @@ import { PLUGIN_NAME, GulpContext, GulpOptions, ExtendedFile } from './context';
 
 function onError(opts: GulpOptions, gulpContext: GulpContext, error: Error): void {
   gulpContext.logger.error(PLUGIN_NAME, error, 'Bundling failed');
-  if ((opts as GulpOptions).exitOnError) {
+  if (opts.exitOnError) {
     process.exit(1);
   } else {
     gulpContext.stream.emit('end');
@@ -34,7 +34,7 @@ export function flushFactory(opts: GulpOptions, gulpContext: GulpContext,
         gulpContext.firstFlush = false;
         // enable source-map if found in given sources
         if (gulpContext.withSourceMap) {
-          (opts as GulpOptions).sourceMap = true;
+          opts.sourceMap = true;
         }
         bundleFn(opts, gulpContext.host, (error, context, code, sourceMap) => {
           if (error) {
