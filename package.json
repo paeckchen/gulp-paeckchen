@@ -56,7 +56,7 @@
     "glogg": "~1.0.0",
     "gulp": "~3.9.1",
     "gulplog": "~1.0.0",
-    "husky": "0.13.4",
+    "husky": "0.14.0",
     "nyc": "~10.3.0",
     "rimraf": "~2.6.0",
     "source-map-support": "~0.4.6",
