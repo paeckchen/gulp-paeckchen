@@ -9,8 +9,8 @@ export interface GulpPaeckchen {
   (): NodeJS.ReadWriteStream;
 }
 
-export function paeckchen(opts: GulpOptions|string = {}): GulpPaeckchen {
-  opts = typeof opts === 'string' ? { entryPoint: opts } : opts;
+export function paeckchen(optsOrString: GulpOptions|string = {}): GulpPaeckchen {
+  const opts = typeof optsOrString === 'string' ? { entryPoint: optsOrString } : optsOrString;
   opts.exitOnError = typeof opts.exitOnError === 'boolean' ? opts.exitOnError : true;
   opts.watchMode = true;
 
