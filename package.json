@@ -50,7 +50,7 @@
     "@types/gulp-util": "^3.0.31",
     "@types/through2": "^2.0.33",
     "ava": "^0.20.0",
-    "conventional-changelog-lint": "^1.1.0",
+    "conventional-changelog-lint": "^2.0.0",
     "coveralls": "^2.13.1",
     "cz-customizable": "^5.0.0",
     "glogg": "^1.0.0",
