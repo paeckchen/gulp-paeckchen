@@ -7,7 +7,6 @@
     "dist/src"
   ],
   "scripts": {
-    "commitmsg": "conventional-changelog-lint -e",
     "linter": "tslint --project ./tsconfig.json --type-check",
     "clean": "rimraf dist",
     "prebuild": "npm run clean",
@@ -98,5 +97,10 @@
       "dist/test",
       "test"
     ]
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "conventional-changelog-lint -e"
+    }
   }
 }
