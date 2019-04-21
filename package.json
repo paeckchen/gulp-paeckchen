@@ -54,7 +54,7 @@
     "coveralls": "^3.0.0",
     "cz-customizable": "^5.0.0",
     "glogg": "^1.0.0",
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.1",
     "gulplog": "^1.0.0",
     "husky": "^0.14.1",
     "nyc": "^11.0.3",
