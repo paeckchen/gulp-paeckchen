@@ -51,7 +51,7 @@
     "@types/through2": "^2.0.33",
     "ava": "^0.25.0",
     "conventional-changelog-lint": "^2.0.0",
-    "coveralls": "^3.0.0",
+    "coveralls": "^3.0.11",
     "cz-customizable": "^5.0.0",
     "glogg": "^1.0.0",
     "gulp": "^3.9.1",
